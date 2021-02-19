@@ -70,4 +70,22 @@ public class Demo {
         redisJedisUtil.mset(3, new String[]{"x4","v4", "x2","v2"});
         System.out.println(new String(redisJedisUtil.getSet("x4", "v44", 3), StandardCharsets.UTF_8));
     }
+
+    @Test
+    public void test9(){
+        Long l = redisJedisUtil.incr("x4", 3);
+        System.out.println(l);
+
+        String r = redisJedisUtil.set("x4", "1",3);
+        System.out.println(r);
+
+        l = redisJedisUtil.incr("x4", 3);
+        System.out.println(l);
+
+        l = redisJedisUtil.incrBy("x4", 10L, 3);
+        System.out.println(l);
+
+        l = redisJedisUtil.decr("x4", 3);
+        System.out.println(l);
+    }
 }

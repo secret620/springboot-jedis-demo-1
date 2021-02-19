@@ -521,5 +521,140 @@ public class RedisJedisUtil {
     public byte[] getrange(byte[] key, int startOffset, int endOffset){
         return this.getrange(key, startOffset, endOffset, 0);
     }
+
+    public Long incr(byte[] key, int indexDb){
+        Jedis jedis = null;
+        try{
+            jedis = this.jedis(indexDb);
+            return jedis.incr(key);
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(jedis != null){
+                jedis.close();
+            }
+        }
+        return null;
+    }
+
+    public Long incr(byte[] key){
+        return this.incr(key, 0);
+    }
+
+    public Long incr(String key, int indexDb){
+        return this.incr(key.getBytes(StandardCharsets.UTF_8), indexDb);
+    }
+
+    public Long incr(String key){
+        return this.incr(key, 0);
+    }
+
+    public Long incrBy(byte[] key, Long integer, int indexDb){
+        Jedis jedis = null;
+        try{
+            jedis = this.jedis(indexDb);
+            return jedis.incrBy(key, integer);
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(jedis != null){
+                jedis.close();
+            }
+        }
+        return null;
+    }
+
+    public Long incrBy(byte[] key, Long integer){
+        return this.incrBy(key, integer, 0);
+    }
+
+    public Long incrBy(String key, Long integer, int indexDb){
+        return this.incrBy(key.getBytes(StandardCharsets.UTF_8),integer, indexDb);
+    }
+
+    public Long incrBy(String key, Long integer){
+        return this.incrBy(key, integer, 0);
+    }
+
+    public Long decr(byte[] key, int indexDb){
+        Jedis jedis = null;
+        try{
+            jedis = this.jedis(indexDb);
+            return jedis.decr(key);
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(jedis != null){
+                jedis.close();
+            }
+        }
+        return null;
+    }
+
+    public Long decr(byte[] key){
+        return this.decr(key, 0);
+    }
+
+    public Long decr(String key, int indexDb){
+        return this.decr(key.getBytes(StandardCharsets.UTF_8), indexDb);
+    }
+
+    public Long decr(String key){
+        return this.decr(key, 0);
+    }
+
+    public Long decrBy(byte[] key, Long integer, int indexDb){
+        Jedis jedis = null;
+        try{
+            jedis = this.jedis(indexDb);
+            return jedis.decrBy(key, integer);
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(jedis != null){
+                jedis.close();
+            }
+        }
+        return null;
+    }
+
+    public Long decrBy(byte[] key, Long integer){
+        return this.decrBy(key, integer, 0);
+    }
+
+    public Long decrBy(String key, Long integer, int indexDb){
+        return this.decrBy(key.getBytes(StandardCharsets.UTF_8),integer, indexDb);
+    }
+
+    public Long decrBy(String key, Long integer){
+        return this.decrBy(key, integer, 0);
+    }
+
+    public Long strlen(byte[] key, int indexDb){
+        Jedis jedis = null;
+        try{
+            jedis = this.jedis(indexDb);
+            return jedis.strlen(key);
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(jedis != null){
+                jedis.close();
+            }
+        }
+        return null;
+    }
+
+    public Long strlen(byte[] key){
+        return this.strlen(key, 0);
+    }
+
+    public Long strlen(String key){
+        return this.strlen(key, 0);
+    }
+
+    public Long strlen(String key, int indexDb){
+        return this.strlen(key.getBytes(StandardCharsets.UTF_8), indexDb);
+    }
 }
 
