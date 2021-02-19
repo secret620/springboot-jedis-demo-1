@@ -88,4 +88,12 @@ public class Demo {
         l = redisJedisUtil.decr("x4", 3);
         System.out.println(l);
     }
+
+    @Test
+    public void test10(){
+        Long l = redisJedisUtil.hset("v5", "name","1", 3);
+        System.out.println(l);
+        l = redisJedisUtil.hset("v5", "name2","12", 3);
+        System.out.println(l);
+    }
 }

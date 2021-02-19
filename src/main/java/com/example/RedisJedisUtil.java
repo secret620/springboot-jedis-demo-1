@@ -6,6 +6,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 /**
  * @Description 表示 ：
@@ -655,6 +656,98 @@ public class RedisJedisUtil {
 
     public Long strlen(String key, int indexDb){
         return this.strlen(key.getBytes(StandardCharsets.UTF_8), indexDb);
+    }
+
+    public Long hset(byte[] key, Map<byte[], byte[]> fieldValue, int indexDb){
+        Jedis jedis = null;
+        try{
+            jedis = this.jedis(indexDb);
+            return jedis.hset(key, fieldValue);
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(jedis != null){
+                jedis.close();
+            }
+        }
+        return null;
+    }
+
+    public Long hset(byte[] key, Map<byte[], byte[]> fieldValue){
+        return this.hset(key, fieldValue, 0);
+    }
+
+    public Long hset(String key, Map<String, String> fieldValue, int indexDb){
+        Jedis jedis = null;
+        try{
+            jedis = this.jedis(indexDb);
+            return jedis.hset(key, fieldValue);
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(jedis != null){
+                jedis.close();
+            }
+        }
+        return null;
+    }
+
+    public Long hset(String key, Map<String, String> fieldValue){
+        return this.hset(key, fieldValue, 0);
+    }
+
+    public Long hset(byte[] key, byte[] field, byte[] value, int indexDb){
+        Jedis jedis = null;
+        try{
+            jedis = this.jedis(indexDb);
+            return jedis.hset(key, field, value);
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(jedis != null){
+                jedis.close();
+            }
+        }
+        return null;
+    }
+
+    public Long hset(byte[] key, byte[] field, byte[] value){
+        return this.hset(key, field, value, 0);
+    }
+
+    public Long hset(String key, String field, String value, int indexDb){
+        return this.hset(key.getBytes(StandardCharsets.UTF_8), field.getBytes(StandardCharsets.UTF_8), value == null ? null : value.getBytes(StandardCharsets.UTF_8), indexDb);
+    }
+
+    public Long hset(String key, String field, String value){
+        return this.hset(key, field, value, 0);
+    }
+
+    public Long hsetnx(byte[] key, byte[] field, byte[] value, int indexDb){
+        Jedis jedis = null;
+        try{
+            jedis = this.jedis(indexDb);
+            return jedis.hsetnx(key, field, value);
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(jedis != null){
+                jedis.close();
+            }
+        }
+        return null;
+    }
+
+    public Long hsetnx(byte[] key, byte[] field, byte[] value){
+        return this.hsetnx(key, field, value, 0);
+    }
+
+    public Long hsetnx(String key, String field, String value, int indexDb){
+        return this.hsetnx(key.getBytes(StandardCharsets.UTF_8), field.getBytes(StandardCharsets.UTF_8), value == null ? null : value.getBytes(StandardCharsets.UTF_8), indexDb);
+    }
+
+    public Long hsetnx(String key, String field, String value){
+        return this.hsetnx(key, field, value, 0);
     }
 }
 

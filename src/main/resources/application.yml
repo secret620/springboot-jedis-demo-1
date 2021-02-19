@@ -3,8 +3,8 @@ server:
 spring:
   redis:
 #    host: 127.0.0.1
-#    host: 192.168.1.11
-    host: 107a38a.all123.net
+    host: 192.168.1.11
+#    host: 107a38a.all123.net
     password: 123456
     port: 6379
     timeout: 30000
